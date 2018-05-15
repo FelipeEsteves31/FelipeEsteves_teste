@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+ <head>
+  <meta charset="UTF-8"/>
+   <title>Corridas compartilhadas</title>
+	<link rel="stylesheet" href="css/estilo.css"/>
+ </head>
+ <body>
+  
+  <div id="interface">   
+   <header id="cabecalho">
+	 
+	 
+     <aside id="lateral"> 
+  
+    <p><h1 id="texto" style="text-align: top;">Corridas compartilhadas </h1></p>  
+ 
+     </aside>
+
+   </header>
+
+
+  <section id="form">
+ 	<form action="formulario.php" method="post">
+	
+     <fieldset id="Pessoa"><legend>Cadastro de Motoristas</legend>
+      <p><label for="cNomeMotoristaf">Nome:  </label><input type="text" name="tNomeMotoristaf" id="cNomeMotoristaf" size="33" maxlength="35" placeholder="Nome Completo"/></p>
+      <p><label for="cDataNascimentoMotoristaf">Data de Nascimento:  </label><input type="date" name="tDataNascimentoMotoristaf" id="cDataNascimentoMotoristaf"size="8" maxlength="8"></p>
+	  <p><label for="cCPFMotoristaf">CPF:  </label><input type="text" name="tCPFMotoristaf" id="cCPFMotoristaf" size="35" maxlength="35" placeholder="EX: 000.000.000-00"/></p>
+	  <p><label for="cModeloCarrof">Modelo do carro:  </label><input type="text" name="tModeloCarrof" id="cModeloCarrof" size="21" maxlength="35" /></p>
+	  <p><label for="cStatusMotoristaf">Status:  </label><input type="text" name="tStatusMotoristaf" id="cStatusMotoristaf" size="33" maxlength="35" /></p>
+      <p><label for="cSexoMotoristaf">Sexo:  </label><input type= "text" name="tSexoMotoristaf" id="cSexoMotoristaf" size="35" maxlength="30"/></p>
+	
+	<input type="button" name="tENVIARMOTORISTA" value="Enviar" class="BotaoEnviar"/></p>
+	<input type="reset" name="tLIMPAR" value="Limpar" class="BotaoLimpar"/></p>
+	<input type="button" name="tCONSULTARMOTORISTA" value="Consultar" class="BotaoConsultar"/></p>
+	
+    </section>
+	
+	</br> 
+	<section id="form">
+ 	
+	  <fieldset id="Pessoa"><legend>Cadastro de Passageiros</legend>
+      <p><label for="cNomePassageirof">Nome:  </label><input type="text" name="tNomePassageirof" id="cNomePassageirof" size="33" maxlength="35" placeholder="Nome Completo"/></p>
+      <p><label for="cDataNascimentoPassageirof">Data de Nascimento:  </label><input type="date" name="tDataNascimentoPassageirof" id="cDataNascimentoPassageirof"size="8" maxlength="8"/></p>
+	  <p><label for="cCPFPassageirof">CPF:  </label><input type="text" name="tCPFPassageirof" id="cCPFPassageirof" size="35" maxlength="35" placeholder="EX: 000.000.000-00"/></p>
+      <p><label for="cSexoPassageirof">Sexo:  </label><input type= "text" name="tSexoPassageirof" id="cSexoPassageirof" size="35" maxlength="30"/></p>
+	 
+	<input type="button" name="tENVIARPASSAGEIRO" value="Enviar" class="BotaoEnviar" /></p>
+	<input type="reset" name="tLIMPAR" value="Limpar" class="BotaoLimpar"/></p>
+	<input type="button" name="tCONSULTARPASSAGEIRO" value="Consultar" class="BotaoConsultar"/></p>
+	  </section>
+	  
+    </br> 
+    <section id="form">
+  	 
+	  <fieldset id="Pessoa"><legend>Registro de corridas</legend>
+      <p><label for="cNomeMotoristaf">Nome do motorista:  </label><input type="text" name="tNomeMotoristaf" id="cNomeMotoristaf" size="33" maxlength="35" placeholder="Nome Completo"/></p>
+      <p><label for="cNomePassageirof">Nome do passageiro:  </label><input type="text" name="tNomePassageirof" id="cNomePassageirof"size="32" maxlength="35" placeholder="Nome Completo"/></p>
+	  <p><label for="cValorCorridaf">Valor da corrida:  </label><input type="text" name="tValorCorridaf" id="cValorCorridaf" size="38" maxlength="35" placeholder="R$:"/></p>
+	  
+	<input type="button" name="tENVIARCORRIDA" value="Enviar" class="BotaoEnviar" /></p>
+	<input type="reset" name="tLIMPAR" value="Limpar" class="BotaoLimpar"/></p>
+    <input type="button" name="tCONSULTARCORRIDA" value="Consultar" class="BotaoConsultar"/></p>	
+	
+	 </form>  
+
+	 </section>
+
+	     <?php
+		 include('connect.php');//chama o script 'connect.php' que faz a conexao
+		 if(isset($_POST['tENVIARMOTORISTA'])){
+		 
+	     //Cadastro Motorista
+         $nomemotorista = $_POST['tNomeMotoristaf'];
+	     $datanascimentomotorista = $_POST['tDataNascimentoMotoristaf'];
+	     $cpfmotorista = $_POST['tCPFMotoristaf'];
+	     $modelocarro = $_POST['tModeloCarrof'];
+	     $statusmotorista = $_POST['tStatusMotoristaf'];
+	     $sexomotorista = $_POST['tSexoMotoristaf'];
+	
+		if(mysql_query("INSERT INTO 'bd_Cadastro'.'tb_Motorista'
+		 ('idMotorista','tNomeMotoristaf','tDataNascimentoMotoristaf','tCPFMotoristaf','tModeloCarrof','tStatusMotoristaf','tSexoMotoristaf')
+		 VALUES (NULL,'$nomemotorista','$datanascimentomotorista','$cpfmotorista','$modelocarro','$statusmotorista','$sexomotorista');")){
+			 echo "Dados enviados com sucesso !";
+	
+
+	     }
+	}
+     
+		 
+		 include('connect.php');//chama o script 'connect.php' que faz a conexao
+		 if(isset($_POST['tENVIARPASSAGEIRO'])){
+	     //Cadastro Passageiro
+	     $nomepassageiro = $_POST['tNomePassageirof'];
+	     $datanascimentopassageiro = $_POST['tDataNascimentoPassageirof'];
+	     $cpfpassageiro = $_POST['tCPFPassageirof'];
+	     $sexopassageiro = $_POST['tSexoPassageirof'];
+	
+		if(mysql_query("INSERT INTO 'bd_Cadastro'.'tb_Passageiro'	  
+	     ('idPassageiro','tNomePassageirof','tDataNascimentoPassageirof','tCPFPassageirof','tSexoPassageirof')
+		 VALUES (NULL,'$nomepassageiro','$datanascimentopassageiro','$cpfpassageiro','$sexopassageiro');")){
+			 echo "Dados enviados com sucesso !";
+			 
+	     }
+	}
+
+		 include('connect.php');//chama o script 'connect.php' que faz a conexao
+		 if(isset($_POST['tENVIARCORRIDA'])){
+	     //Registro de corridas
+	     $nomemotorista = $_POST['tNomeMotoristaf'];
+	     $nomepassageiro = $_POST['tNomePassageirof'];
+	     $valorcorrida = $_POST['tValorCorridaf'];
+	 
+	    if(mysql_query("INSERT INTO 'bd_Cadastro'.'tb_Corridas'	  
+	     ('idCorrida','tNomeMotoristaf','tNomePassageirof','tValorCorridaf')
+		 VALUES (NULL,'$nomemotorista','$nomepassageiro','$valorcorrida');")){
+			 echo "Dados enviados com sucesso !";
+			 
+	     }
+	}	 	 
+
+	     //Consulta de motorista
+	     include('connect.php');//chama o script 'connect.php' que faz a conexao
+		 if(isset($_POST['tCONSULTARMOTORISTA'])){
+
+	    if(mysql_query("SELECT * FROM 'bd_Cadastro'.'tb_Motorista'");	  
+			 
+	     }
+		 
+		 //Consulta de passageiro
+		 include('connect.php');//chama o script 'connect.php' que faz a conexao
+		 if(isset($_POST['tCONSULTARPASSAGEIRO'])){
+
+	    if(mysql_query("SELECT * FROM 'bd_Cadastro'.'tb_Passageiro'");	  
+			 
+	     }
+
+		 //Consulta de corridas
+		 include('connect.php');//chama o script 'connect.php' que faz a conexao
+		 if(isset($_POST['tCONSULTARCORRIDA'])){
+
+	    if(mysql_query("SELECT * FROM 'bd_Cadastro'.'tb_Corridas'");	  
+			 
+	     }
+		 	 
+     ?>
+	 
+</br> </br> </br> 
+
+   <footer id="rodape">
+   </br>
+   <a href="https://www.linkedin.com/in/felipe-esteves-carvalho-dos-santos-34a28815b/" target="blank">Copyright &copy; 2018 - by Felipe Esteves</a>
+ </br></br>
+   </footer>
+  </div>
+ </body>
+</html>
